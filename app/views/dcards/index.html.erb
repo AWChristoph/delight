@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Description</th>
+      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +15,12 @@
     <% @dcards.each do |dcard| %>
       <tr>
         <td><%= dcard.description %></td>
+        <td><%= dcard.user.email if dcard.user %></td>
         <td><%= link_to 'Show', dcard %></td>
-        <td><%= link_to 'Edit', edit_dcard_path(dcard) %></td>
-        <td><%= link_to 'Destroy', dcard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if dcard.user == current_user %>
+          <%= link_to 'Edit', edit_dcard_path(dcard) %>
+          <%= link_to 'Destroy', dcard, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

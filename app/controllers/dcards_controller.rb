@@ -1,5 +1,7 @@
 class DcardsController < ApplicationController
   before_action :set_dcard, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /dcards
   # GET /dcards.json
@@ -14,7 +16,7 @@ class DcardsController < ApplicationController
 
   # GET /dcards/new
   def new
-    @dcard = Dcard.new
+    @dcard = current_user.dcards.build
   end
 
   # GET /dcards/1/edit
@@ -24,7 +26,7 @@ class DcardsController < ApplicationController
   # POST /dcards
   # POST /dcards.json
   def create
-    @dcard = Dcard.new(dcard_params)
+    @dcard = current_user.dcards.build(dcard_params)
 
     respond_to do |format|
       if @dcard.save
