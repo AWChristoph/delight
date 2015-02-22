@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Dcards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dcards.each do |dcard| %>
+      <tr>
+        <td><%= dcard.description %></td>
+        <td><%= link_to 'Show', dcard %></td>
+        <td><%= link_to 'Edit', edit_dcard_path(dcard) %></td>
+        <td><%= link_to 'Destroy', dcard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dcard', new_dcard_path %>

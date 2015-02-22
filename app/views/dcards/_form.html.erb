@@ -1,0 +1,21 @@
+<%= form_for(@dcard) do |f| %>
+  <% if @dcard.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dcard.errors.count, "error") %> prohibited this dcard from being saved:</h2>
+
+      <ul>
+      <% @dcard.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
