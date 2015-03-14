@@ -20,7 +20,7 @@ class DcardsController < ApplicationController
   def create
     @dcard = current_user.dcards.build(dcard_params)
     if @dcard.save
-      redirect_to @dcard, notice: 'DCard was successfully created.'
+      redirect_to @dcard, notice: 'Dcard was successfully created.'
     else
       render action: 'new'
     end
@@ -28,7 +28,7 @@ class DcardsController < ApplicationController
 
   def update
     if @dcard.update(dcard_params)
-      redirect_to @dcard, notice: 'DCard was successfully updated.'
+      redirect_to @dcard, notice: 'Dcard was successfully updated.'
     else
       render action: 'edit'
     end
@@ -42,7 +42,7 @@ class DcardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dcard
-      @dcard = DCard.find_by(id: params[:id])
+      @dcard = Dcard.find_by(id: params[:id])
     end
 
     def correct_user
