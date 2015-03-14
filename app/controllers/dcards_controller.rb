@@ -3,74 +3,55 @@ class DcardsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
-  # GET /dcards
-  # GET /dcards.json
   def index
     @dcards = Dcard.all
   end
 
-  # GET /dcards/1
-  # GET /dcards/1.json
   def show
   end
 
-  # GET /dcards/new
   def new
     @dcard = current_user.dcards.build
   end
 
-  # GET /dcards/1/edit
   def edit
   end
 
-  # POST /dcards
-  # POST /dcards.json
   def create
     @dcard = current_user.dcards.build(dcard_params)
-
-    respond_to do |format|
-      if @dcard.save
-        format.html { redirect_to @dcard, notice: 'Dcard was successfully created.' }
-        format.json { render :show, status: :created, location: @dcard }
-      else
-        format.html { render :new }
-        format.json { render json: @dcard.errors, status: :unprocessable_entity }
-      end
+    if @dcard.save
+      redirect_to @dcard, notice: 'DCard was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
-  # PATCH/PUT /dcards/1
-  # PATCH/PUT /dcards/1.json
   def update
-    respond_to do |format|
-      if @dcard.update(dcard_params)
-        format.html { redirect_to @dcard, notice: 'Dcard was successfully updated.' }
-        format.json { render :show, status: :ok, location: @dcard }
-      else
-        format.html { render :edit }
-        format.json { render json: @dcard.errors, status: :unprocessable_entity }
-      end
+    if @dcard.update(dcard_params)
+      redirect_to @dcard, notice: 'DCard was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
-  # DELETE /dcards/1
-  # DELETE /dcards/1.json
   def destroy
     @dcard.destroy
-    respond_to do |format|
-      format.html { redirect_to dcards_url, notice: 'Dcard was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to dcards_url
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dcard
-      @dcard = Dcard.find(params[:id])
+      @dcard = DCard.find_by(id: params[:id])
+    end
+
+    def correct_user
+      @dcard = current_user.dcards.find_by(id: params[:id])
+      redirect_to dcards_path, notice: "Not authorized to edit this DCard" if @dcard.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dcard_params
-      params.require(:dcard).permit(:description)
+      params.require(:dcard).permit(:description, :image)
     end
 end
