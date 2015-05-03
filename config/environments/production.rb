@@ -81,3 +81,13 @@ Rails.application.configure do
   # Note to set to actual domain name
   config.action_mailer.default_url_options = { host: 'delightapp.herokuapp.com', port: 3000 }
 end
+
+  # Sets Paperclip to upload images to AWS S3
+config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['S3_BUCKET_NAME'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
