@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :presents
+
   resources :dcards
 
   devise_for :users
-  root 'pages#home'
+  root "pages#home"
   get "about" => "pages#about"
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Dcards</h1>
+<h1>Dcards of your loved ones</h1>
 
 <table>
   <thead>
     <tr>
       <th>Image</th>
-      <th>Description</th>
+      <th>Relation</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -29,8 +29,3 @@
 </table>
 
 <br>
-
-<% if user_signed_in? %>
-  <%= link_to 'New Dcard', new_dcard_path %>
-<% end %>
-

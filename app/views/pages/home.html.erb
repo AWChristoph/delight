@@ -1,10 +1,16 @@
-<div class="jumbotron">
-	 <h1>Delight</h1>
-     <% if user_signed_in? %>
-          # gonna make it happen
-     <% else %>
+<div class="center">
+	<h1>Delight</h1>
+    <% if user_signed_in? %>
+          Make your loved ones a joy
+    <% else %>
        <p>
          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
        </p>
-  <% end %>
+  	<% end %>
+</div>
+
+<div class="webkit-box-pack: center;">
+	<h3>Never forget an occasion anymore</h3>
+	<h3>Exclusive presents suggested to you</h3>
+	<h3>Delivered in love</h3>
 </div>
