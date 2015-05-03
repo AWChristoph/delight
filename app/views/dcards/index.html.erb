@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Description</th>
       <th>User</th>
       <th>Action</th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @dcards.each do |dcard| %>
       <tr>
+        <td><%= image_tag dcard.image.url(:thumb) %></td>
         <td><%= dcard.description %></td>
         <td><%= dcard.user.email if dcard.user %></td>
         <td><%= link_to 'Show', dcard %>
