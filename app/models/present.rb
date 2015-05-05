@@ -1,3 +1,3 @@
 class Present < ActiveRecord::Base
-	has_one :dcard, :through => :user
+	belongs_to :event
 end
